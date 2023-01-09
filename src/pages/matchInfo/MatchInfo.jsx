@@ -5,7 +5,7 @@ import { PlayerCard } from '../../components'
 function MatchInfo({ user, Logout }) {
   // user = JSON.parse(user)
   const [playersData, setPlayersData] = useState([])
-  const [error, setError] = useState(false)
+  const [joined, setJoined] = useState(false)
   const [loading, setLoading] = useState(true)
 
   const [eloList, setEloList] = useState([]);
@@ -29,6 +29,7 @@ function MatchInfo({ user, Logout }) {
         username: user.username
       };
       
+      try {
       let response = await fetch("https://api.atitkharel.com.np/valorant/activegame/players", {
         method: "POST",
         headers: {
@@ -41,7 +42,7 @@ function MatchInfo({ user, Logout }) {
       // conver array of json to array
       playersList = await playersList.split("}{").join("},{");
       playersList = await JSON.parse(playersList);
-      
+
       if(playersList[0].Subject){
         for (let i = 0; i < playersList.length; i++) {
           let item = playersList[i];
@@ -55,13 +56,19 @@ function MatchInfo({ user, Logout }) {
         }
         setPlayersData(playersList);
         setLoading(false);
-        setError(false);
+        setJoined(true);
       }
       else{
         setLoading(false);
-        setError(true);
+        setJoined(false);
       }
     }
+    catch (error) {
+      console.log(error);
+      setLoading(false);
+      setJoined(false);
+    }
+  };
     fetchData();
   }, [user]);
 
@@ -77,7 +84,7 @@ function MatchInfo({ user, Logout }) {
         </div>
       ) : (
         <div className="matchInfo__body">
-          {!error ? playersData.map((item, index) => (
+          {joined ? playersData.map((item, index) => (
             <PlayerCard key={index} teamID={teamIDList[index]} name={nameList[index]} tag={tagList[index]} rankName={rankNameList[index]} rankNumber={rankNumberList[index]} rankImageUrl={rankImageUrlList[index]} elo={eloList[index]} />
           )) : (
             <div className="matchInfo__body__empty">
