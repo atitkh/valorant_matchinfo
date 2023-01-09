@@ -40,56 +40,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26), 0 0.5rem 1rem rgba(0, 0, 0, 0.26);
 }
 
-.matchInfo__wallet { 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.matchInfo__wallet__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    box-sizing: border-box;
-
-    padding: 1rem;
-    border: 1px solid rgb(206, 64, 64);
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-
-    background-color: #e9e9e9;
-
-    width: 100%;
-    height: 100%;
-
-    margin: 1rem 0;
-}
-
-.matchInfo__wallet__content__item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    margin: 0.5rem 1rem;
-
-    color: rgb(0, 0, 0);
-}
-
-.matchInfo__wallet__content__item img {
-    width: 2rem;
-    height: 2rem;
-    filter: invert(100%);
-}
-
-.matchInfo__wallet__content__item p {
-    font-size: 1.5rem;
-}
-
 .matchInfo__body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));

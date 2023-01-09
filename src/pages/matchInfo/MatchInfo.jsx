@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import './matchInfo.css'
-import { MarketItem } from '../../components'
+import { PlayerCard } from '../../components'
 
 function MatchInfo({ user, Logout }) {
   // user = JSON.parse(user)
   const [playersData, setPlayersData] = useState([])
-
+  const [error, setError] = useState(false)
   const [loading, setLoading] = useState(true)
+
+  const [eloList, setEloList] = useState([]);
+  const [rankImageUrlList, setRankImageUrlList] = useState([]);
+  const [rankNumberList, setRankNumberList] = useState([]);
+  const [rankNameList, setRankNameList] = useState([]);
+  const [tagList, setTagList] = useState([]);
+  const [nameList, setNameList] = useState([]);
+  const [teamIDList, setTeamIDList] = useState([]);
 
   // get skin list
   useEffect(() => {
@@ -29,37 +37,38 @@ function MatchInfo({ user, Logout }) {
         body: JSON.stringify(details),
       });
 
-      let result = await response.json();
-      let playersList = result;
+      let playersList = await response.text();
+      // conver array of json to array
+      playersList = await playersList.split("}{").join("},{");
+      playersList = await JSON.parse(playersList);
+      
       if(playersList[0].Subject){
-        for(let i = 0; i < playersList.length; i++){
-          setPlayersData(playersData => [...playersData, playersList[i]]);
+        for (let i = 0; i < playersList.length; i++) {
+          let item = playersList[i];
+          setEloList((eloList) => [...eloList, item.Elo.elo]);
+          setRankImageUrlList((rankImageUrlList) => [...rankImageUrlList, item.Elo.images.large]);
+          setRankNumberList((rankNumberList) => [...rankNumberList, item.Elo.currenttier]);
+          setRankNameList((rankNameList) => [...rankNameList, item.Elo.currenttierpatched]);
+          setTagList((tagList) => [...tagList, item.Elo.tag]);
+          setNameList((nameList) => [...nameList, item.Elo.name]);
+          setTeamIDList((teamIDList) => [...teamIDList, item.TeamID]);
         }
+        setPlayersData(playersList);
         setLoading(false);
+        setError(false);
       }
       else{
         setLoading(false);
+        setError(true);
       }
     }
     fetchData();
   }, [user]);
-  
+
   return (
     <div className="matchInfo">
       <div className="matchInfo__header">
-        <h1>Night Market Listing</h1>
-      </div>
-      <div className="matchInfo__wallet">
-        <div className="matchInfo__wallet__content">
-          {walletKeys.map((key, index) => (
-            (index < 2) ? (
-            <div className="matchInfo__wallet__content__item" key={index}>
-              <img src={walletImages[index]} alt={key} />
-              <h4>{wallet[key]}</h4>
-            </div>
-            ) : null 
-          ))}
-        </div>
+        <h1>VALORANT MATCH INFO</h1>
       </div>
       
       {loading ? (
@@ -68,11 +77,11 @@ function MatchInfo({ user, Logout }) {
         </div>
       ) : (
         <div className="matchInfo__body">
-          {timeRemaining > 0 ? skinNameList.map((item, index) => (
-            <MarketItem key={index} name={item} price={skinPriceList[index] + ' VP'} image={skinImageList[index]} discountedPrice={priceList[index] + ' VP'} discountPercent={discountPercent[index] + '%'} />
+          {!error ? playersData.map((item, index) => (
+            <PlayerCard key={index} teamID={teamIDList[index]} name={nameList[index]} tag={tagList[index]} rankName={rankNameList[index]} rankNumber={rankNumberList[index]} rankImageUrl={rankImageUrlList[index]} elo={eloList[index]} />
           )) : (
             <div className="matchInfo__body__empty">
-              <h1>Night Market Has Ended.</h1>
+              <h1>Please join a match and Reload.</h1>
             </div>  
               )}
         </div>

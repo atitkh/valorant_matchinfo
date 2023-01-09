@@ -1,0 +1,57 @@
+.playerCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+
+.Blue {
+    background-color: rgb(187, 209, 155);
+}
+
+.Red {
+    background-color: rgb(243, 145, 145);
+}
+
+.playerCard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26), 0 0.5rem 1rem rgba(0, 0, 0, 0.26);
+}
+
+.playerCard__image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.playerCard__image img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 0.5rem 0.5rem 0 0;
+    margin-top: 0.5rem;
+}
+
+.playerCard__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
+
+.playerCard__info h1 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
