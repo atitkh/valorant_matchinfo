@@ -1,6 +1,6 @@
 {
-  "short_name": "Valorant Night Market",
-  "name": "Web App to display Valorant Night Market items",
+  "short_name": "Valorant Match Info",
+  "name": "Web App to display Valorant Match Info",
   "icons": [
     {
       "src": "logo.jpg",
