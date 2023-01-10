@@ -6,7 +6,7 @@ function MatchInfo({ user, Logout }) {
   // user = JSON.parse(user)
   const [playersData, setPlayersData] = useState([])
   const [joined, setJoined] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const [eloList, setEloList] = useState([]);
   const [rankImageUrlList, setRankImageUrlList] = useState([]);
@@ -19,6 +19,7 @@ function MatchInfo({ user, Logout }) {
   // get skin list
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       // eslint-disable-next-line react-hooks/exhaustive-deps
       user = JSON.parse(user);
       let details = {
