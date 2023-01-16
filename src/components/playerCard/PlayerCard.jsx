@@ -1,26 +1,26 @@
 import React from 'react'
 import './playerCard.css'
 
-function PlayerCard({ key, teamID, name, tag, rankName, rankNumber, rankImageUrl, elo }) {
-  let classNameVar = 'playerCard ' + teamID;
+function PlayerCard(props) {
+  let classNameVar = 'playerCard ' + props.teamID;
   return (
     <div className={classNameVar}>
       <div className="playerCard__image">
-        {rankImageUrl === null ? (
+        {props.rankImageUrl === null ? (
           <img src={"https://media.valorant-api.com/competitivetiers/564d8e28-c226-3180-6285-e48a390db8b1/0/largeicon.png"} alt="rank" />
           ) : (
-            <img src={rankImageUrl.large} alt="rank" />
+            <img src={props.rankImageUrl.large} alt="rank" />
           )}
       </div>
       <div className="playerCard__info">
         <div className="playerCard__info_name">
-          <h1>{name}#{tag}</h1>
+          <h1>{props.name}#{props.tag}</h1>
         </div>
         <div className="playerCard__info_rank">
-          <h1>{rankName}</h1>
+          <h1>{props.rankName}</h1>
         </div>
         <div className="playerCard__info_elo">
-          <h1>{elo}</h1>
+          <h1>{props.elo}</h1>
         </div>
       </div>
     </div>

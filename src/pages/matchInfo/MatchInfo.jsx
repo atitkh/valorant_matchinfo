@@ -16,6 +16,11 @@ function MatchInfo({ user, Logout }) {
   const [nameList, setNameList] = useState([]);
   const [teamIDList, setTeamIDList] = useState([]);
 
+  const [skinList, setSkinList] = useState([]);
+  const [serverIP, setServerIP] = useState('');
+  const [serverPort, setServerPort] = useState(0);
+  const [serverMap, setServerMap] = useState('');
+
   // get skin list
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +45,10 @@ function MatchInfo({ user, Logout }) {
       });
 
       let matchData = await response.json();
+      setServerIP(matchData.ConnectionDetails.GameServerHost);
+      setServerPort(matchData.ConnectionDetails.GameServerPort);
+      setServerMap(matchData.MapID);
+
       let playersList = matchData.Players;
 
       if(playersList[0].Subject){
@@ -75,6 +84,8 @@ function MatchInfo({ user, Logout }) {
     <div className="matchInfo">
       <div className="matchInfo__header">
         <h1>VALORANT MATCH INFO</h1>
+        {joined ? <><p>SERVER : {serverIP}:{serverPort}</p><p>MAP : {serverMap.split("/")[serverMap.split("/").length - 1]}</p></> 
+         : null}
       </div>
       
       {loading ? (
