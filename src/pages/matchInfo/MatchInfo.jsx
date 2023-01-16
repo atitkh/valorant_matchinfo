@@ -31,7 +31,7 @@ function MatchInfo({ user, Logout }) {
       };
       
       try {
-      let response = await fetch("https://api.atitkharel.com.np/valorant/activegame/players", {
+      let response = await fetch("http://localhost:5000/valorant/activegame/match", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -39,16 +39,14 @@ function MatchInfo({ user, Logout }) {
         body: JSON.stringify(details),
       });
 
-      let playersList = await response.text();
-      // conver array of json to array
-      playersList = await playersList.split("}{").join("},{");
-      playersList = await JSON.parse(playersList);
+      let matchData = await response.json();
+      let playersList = matchData.Players;
 
       if(playersList[0].Subject){
         for (let i = 0; i < playersList.length; i++) {
           let item = playersList[i];
           setEloList((eloList) => [...eloList, item.Elo.elo]);
-          setRankImageUrlList((rankImageUrlList) => [...rankImageUrlList, item.Elo.images.large]);
+          setRankImageUrlList((rankImageUrlList) => [...rankImageUrlList, item.Elo.images]);
           setRankNumberList((rankNumberList) => [...rankNumberList, item.Elo.currenttier]);
           setRankNameList((rankNameList) => [...rankNameList, item.Elo.currenttierpatched]);
           setTagList((tagList) => [...tagList, item.Elo.tag]);

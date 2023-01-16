@@ -6,7 +6,11 @@ function PlayerCard({ key, teamID, name, tag, rankName, rankNumber, rankImageUrl
   return (
     <div className={classNameVar}>
       <div className="playerCard__image">
-        <img src={rankImageUrl} alt={name} />
+        {rankImageUrl === null ? (
+          <img src={"https://media.valorant-api.com/competitivetiers/564d8e28-c226-3180-6285-e48a390db8b1/0/largeicon.png"} alt="rank" />
+          ) : (
+            <img src={rankImageUrl.large} alt="rank" />
+          )}
       </div>
       <div className="playerCard__info">
         <div className="playerCard__info_name">
