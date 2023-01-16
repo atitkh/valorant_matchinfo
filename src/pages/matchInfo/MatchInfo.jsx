@@ -31,7 +31,7 @@ function MatchInfo({ user, Logout }) {
       };
       
       try {
-      let response = await fetch("http://localhost:5000/valorant/activegame/match", {
+      let response = await fetch("https://api.atitkharel.com.np/valorant/activegame/match", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
