@@ -16,7 +16,6 @@ function MatchInfo({ user, Logout }) {
   const [nameList, setNameList] = useState([]);
   const [teamIDList, setTeamIDList] = useState([]);
 
-  const [skinList, setSkinList] = useState([]);
   const [serverIP, setServerIP] = useState('');
   const [serverPort, setServerPort] = useState(0);
   const [serverMap, setServerMap] = useState('');
