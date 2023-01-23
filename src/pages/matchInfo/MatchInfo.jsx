@@ -76,8 +76,7 @@ function MatchInfo({ user, Logout }) {
       ) : (
         <div className="matchInfo__body">
           {joined ? playersData.map((item, index) => (
-            console.log(item),
-            <PlayerCard key={index} teamID={item.TeamID} name={item.Elo.name} tag={item.Elo.tag} rankName={item.Elo.currenttierpatched} rankNumber={item.Elo.currenttier} rankImageUrl={item.Elo.images} elo={item.Elo.elo} PlayerCard={item.PlayerIdentity.PlayerCard} />
+            <PlayerCard key={index} teamID={item.TeamID} name={item.Elo.name} tag={item.Elo.tag} rankName={item.Elo.currenttierpatched} rankNumber={item.Elo.currenttier} rankImageUrl={item.Elo.images} elo={item.Elo.elo} PlayerCard={item.PlayerIdentity.PlayerCard} Loadout={item.Loadout} />
           )) : (
             <div className="matchInfo__body__empty">
               <h1>Please join a match and Reload.</h1>

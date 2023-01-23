@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     width: 300px;
-    height: 300px;
+    height: 400px;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
@@ -33,6 +33,7 @@
     height: 100px;
     object-fit: cover;
     border-radius: 0.5rem 0.5rem 0 0;
+    margin: 2rem;
 }
 
 .playerCard__image img {
@@ -50,10 +51,96 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 1rem;
+    margin: 0.5rem;
 }
 
 .playerCard__info h1 {
     font-size: 1.5rem;
     margin: 0.5rem 0;
+}
+
+/* hide info on hover */
+.playerCard:hover .playerCard__info, 
+.playerCard:hover .playerCard__image {
+    display: none;
+}
+
+/* show player loadout on hover */
+.playerCard__loadout {
+    display: none;
+}
+
+.playerCard:hover .playerCard__loadout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.playerCard__loadout {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-out;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* scrollbar hide */
+.playerCard:hover .playerCard__loadout::-webkit-scrollbar {
+    display: none;
+}
+
+/* loadout item */
+.playerCard__loadout_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 100px;
+    padding: 1rem;
+    margin: 1rem;
+
+    border: 1px solid #ccc;
+    background-color: rgba(204, 204, 204, 0.808);
+    border-radius: 0.5rem;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    transition: all 0.3s ease-out;
+}
+
+.playerCard__loadout_item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.playerCard__loadout_item h1 {
+    display: none;
+    position: absolute;
+}
+
+/* loadout item hover */
+.playerCard__loadout_item:hover {
+    flex-direction: row;
+    transform: scale(1.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26), 0 0.5rem 1rem rgba(0, 0, 0, 0.26);
+    background-color: #ccc;
+}
+
+.playerCard__loadout_item:hover h1 {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.658);
+
+    text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+    bottom: 0;
+    right: 0;
+    margin: 0.5rem;
 }
