@@ -14,11 +14,13 @@
 }
 
 .Blue {
-    background-color: rgb(187, 209, 155);
+    background-color: rgb(187, 209, 155, 0.8);
+    position: absolute;
 }
 
 .Red {
-    background-color: rgb(243, 145, 145);
+    background-color: rgb(243, 145, 145, 0.8);
+    position: absolute;
 }
 
 .playerCard:hover {

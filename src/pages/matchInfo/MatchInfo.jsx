@@ -8,14 +8,6 @@ function MatchInfo({ user, Logout }) {
   const [joined, setJoined] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const [eloList, setEloList] = useState([]);
-  const [rankImageUrlList, setRankImageUrlList] = useState([]);
-  const [rankNumberList, setRankNumberList] = useState([]);
-  const [rankNameList, setRankNameList] = useState([]);
-  const [tagList, setTagList] = useState([]);
-  const [nameList, setNameList] = useState([]);
-  const [teamIDList, setTeamIDList] = useState([]);
-
   const [serverIP, setServerIP] = useState('');
   const [serverPort, setServerPort] = useState(0);
   const [serverMap, setServerMap] = useState('');
@@ -25,7 +17,7 @@ function MatchInfo({ user, Logout }) {
     const fetchData = async () => {
       setLoading(true);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      user = JSON.parse(user);
+      user = await JSON.parse(user);
       let details = {
         user_id: user.userID,
         access_token: user.accessToken,
@@ -51,16 +43,6 @@ function MatchInfo({ user, Logout }) {
       let playersList = matchData.Players;
 
       if(playersList[0].Subject){
-        for (let i = 0; i < playersList.length; i++) {
-          let item = playersList[i];
-          setEloList((eloList) => [...eloList, item.Elo.elo]);
-          setRankImageUrlList((rankImageUrlList) => [...rankImageUrlList, item.Elo.images]);
-          setRankNumberList((rankNumberList) => [...rankNumberList, item.Elo.currenttier]);
-          setRankNameList((rankNameList) => [...rankNameList, item.Elo.currenttierpatched]);
-          setTagList((tagList) => [...tagList, item.Elo.tag]);
-          setNameList((nameList) => [...nameList, item.Elo.name]);
-          setTeamIDList((teamIDList) => [...teamIDList, item.TeamID]);
-        }
         setPlayersData(playersList);
         setLoading(false);
         setJoined(true);
@@ -94,7 +76,8 @@ function MatchInfo({ user, Logout }) {
       ) : (
         <div className="matchInfo__body">
           {joined ? playersData.map((item, index) => (
-            <PlayerCard key={index} teamID={teamIDList[index]} name={nameList[index]} tag={tagList[index]} rankName={rankNameList[index]} rankNumber={rankNumberList[index]} rankImageUrl={rankImageUrlList[index]} elo={eloList[index]} />
+            console.log(item),
+            <PlayerCard key={index} teamID={item.TeamID} name={item.Elo.name} tag={item.Elo.tag} rankName={item.Elo.currenttierpatched} rankNumber={item.Elo.currenttier} rankImageUrl={item.Elo.images} elo={item.Elo.elo} PlayerCard={item.PlayerIdentity.PlayerCard} />
           )) : (
             <div className="matchInfo__body__empty">
               <h1>Please join a match and Reload.</h1>
