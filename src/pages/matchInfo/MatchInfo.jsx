@@ -36,6 +36,7 @@ function MatchInfo({ user, Logout }) {
       });
 
       let matchData = await response.json();
+      // let matchData = require('./dummy.json');
       setServerIP(matchData.ConnectionDetails.GameServerHost);
       setServerPort(matchData.ConnectionDetails.GameServerPort);
       setServerMap(matchData.MapID);
@@ -76,7 +77,10 @@ function MatchInfo({ user, Logout }) {
       ) : (
         <div className="matchInfo__body">
           {joined ? playersData.map((item, index) => (
-            <PlayerCard key={index} teamID={item.TeamID} name={item.Elo.name} tag={item.Elo.tag} rankName={item.Elo.currenttierpatched} rankNumber={item.Elo.currenttier} rankImageUrl={item.Elo.images} elo={item.Elo.elo} PlayerCard={item.PlayerIdentity.PlayerCard} Loadout={item.Loadout} />
+            <PlayerCard key={index} teamID={item.TeamID} character={item.Character} name={item.Elo.name} tag={item.Elo.tag} 
+            rankName={item.Elo.currenttierpatched} rankNumber={item.Elo.currenttier} 
+            rankImageUrl={item.Elo.images} elo={item.Elo.elo} PlayerCard={item.PlayerIdentity.PlayerCard} 
+            Loadout={item.Loadout} />
           )) : (
             <div className="matchInfo__body__empty">
               <h1>Please join a match and Reload.</h1>

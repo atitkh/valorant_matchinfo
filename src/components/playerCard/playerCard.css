@@ -5,19 +5,20 @@
     justify-content: center;
     width: 300px;
     height: 400px;
-    padding: 0.5rem;
+    padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     transition: all 0.3s ease-out;
     cursor: pointer;
     position: relative;
+
+    margin: 1rem;
 }
 
 .Blue {
-    background-color: rgb(187, 209, 155, 0.8);
+    background-color: rgb(187, 209, 155, 0.75);
     position: absolute;
-    
 }
 
 .Red {
@@ -31,7 +32,11 @@
 }
 
 .playerCard__image {
-    width: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     height: 100px;
     object-fit: cover;
     border-radius: 0.5rem 0.5rem 0 0;
@@ -49,8 +54,6 @@
 .playerCard__info {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
     margin: 0.5rem;
@@ -58,7 +61,36 @@
 
 .playerCard__info h1 {
     font-size: 1.5rem;
-    margin: 0.5rem 0;
+}
+
+.playerCard__info h2 {
+    font-size: 1rem;
+    white-space: pre-wrap;
+}
+
+.playerCard__info img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin: 0.5rem 0.5rem;
+}
+
+.playerCard__info_name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 1rem 0rem;
+}
+
+.playerCard__info_elo,
+.playerCard__info_agent {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
 
 /* hide info on hover */
